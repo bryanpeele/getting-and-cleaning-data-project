@@ -29,13 +29,14 @@ chosenFeatures <- features[featuresIndices,2]
 colnames(data) <- c(as.character(chosenFeatures),"activity","subject")
 
 #open labels
-activityLabels = read.table("activity_labels.txt",header=FALSE)
+activityLabels <- read.table("activity_labels.txt",header=FALSE)
 
 # replace activity number with descriptive name
 data$activity <- factor(data$activity, levels = activityLabels[,1], labels = activityLabels[,2])
 
 # create "tidy" data table with avg for each feature per activity and subject
-tidy = aggregate(data, by = list(activity=data$activity, subject=data$subject),mean)
+tidy <- aggregate(data, by = list(activity=data$activity, subject=data$subject),mean)
+tidy <- tidy[,1:81] #leave off meaningless avg of activity and subject
 
 #output tidy data
 write.table(tidy, "tidy.txt", sep="")
