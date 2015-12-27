@@ -39,5 +39,5 @@ tidy <- aggregate(data, by = list(activity=data$activity, subject=data$subject),
 tidy <- tidy[,1:81] #leave off meaningless avg of activity and subject
 
 #output tidy data
-write.table(tidy, "tidy.txt", sep="")
+write.table(tidy, "tidy.txt", sep=" ",row.names=FALSE)
 
